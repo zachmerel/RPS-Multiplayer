@@ -1,0 +1,39 @@
+button{
+    margin: 2px;
+}
+.background {
+    background-color: #ffa22f;
+    color: 	#3014ea;
+    border: solid 2px #009fff;
+    text-align: center;
+}
+.center{
+    margin: auto;
+}
+.mainContainer{
+    margin: 5px;
+    padding: 15px;
+}
+.playerText{
+    color: 	#3014ea;
+    margin: 10px;
+}
+.round{
+    border-radius: 10px;
+    margin: 5px;
+}
+#player1buttons{
+    text-align: center;
+}
+#reset{
+    margin-top: 20px;
+    margin-left: 12px;
+}
+/* #your-name{
+    border-radius: 10px;
+    margin: 5px;
+}
+#name-submit{
+    border-radius: 10px;
+    margin: 5px;
+} */

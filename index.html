@@ -5,15 +5,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>RPS Multiplayer</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+  
 </head>
 
 <body>
-    <script src="game.js"></script>
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid background">
+            <div class="container">
+                <h1 class="display-4">Rock-Paper-Scissors-Lizard-Spock</h1>
+                <p class="lead">Please enter your name to start game</p>
+            </div>
+        </div>
+        <div class="yourNameForm text-center">
+            <form id="name-form">
+                <input type="text" id="your-name" placeholder="Your Name" class="center round">
+                <input type="submit" id="name-submit" value="Submit" class="center round">
+
+            </form>
+
+        </div>
+        <div class="row">
+            <div class="mainContainer background col-md-8">
+                <div class="row">
+                    <div id="player1text" class="playerText col-md-5">
+                        <p>Player 1</p>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div id="player2text" class="playerText col-md-5">
+                        <p>Player 2</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="player1name" class="playerText col-md-5">
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div id="player2name" class="playerText col-md-5">
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="player1ChoicePicture" class="col-md-5"></div>
+                    <div id="player1ChoicePicture" class="col-md-5"></div>
+                </div>
+                <div class="row">
+                    <div id="player1score" class="playerText col-md-5">
+                        <p>Wins: <span id="player1wins"></span></p>
+                        <p>Losses:<span id="player1losses"></span> </p>
+                        <p>Ties:<span id="player1ties"></span> </p>
+                    </div>
+                    <div class="col-md-1">
+                        <p>VS</p>
+                    </div>
+                    <div id="player2score" class="playerText col-md-5">
+                        <p>Wins: <span id="player2wins"></span></p>
+                        <p>Losses:<span id="player2losses"></span> </p>
+                        <p>Ties:<span id="player2ties"></span> </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4 player1buttons">
+                        <button type="button" data-choice="Rock" class="btn btn-light player1btn">Rock</button>
+                        <button type="button" data-choice="Paper" class="btn btn-light player1btn">Paper</button>
+                        <button type="button" data-choice="Scissors" class="btn btn-light player1btn">Scissors</button>
+                        <button type="button" data-choice="Lizard" class="btn btn-light player1btn">Lizard</button>
+                        <button type="button" data-choice="Spock" class="btn btn-light player1btn">Spock</button>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4 player2buttons">
+                        <button type="button" data-choice="Rock" class="btn btn-light player2btn">Rock</button>
+                        <button type="button" data-choice="Paper" class="btn btn-light player2btn">Paper</button>
+                        <button type="button" data-choice="Scissors" class="btn btn-light player2btn">Scissors</button>
+                        <button type="button" data-choice="Lizard" class="btn btn-light player2btn">Lizard</button>
+                        <button type="button" data-choice="Spock" class="btn btn-light player2btn">Spock</button>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <button id="reset" type="button"class="btn btn-light">Reset</button>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <textarea type="text" id="chat-input" class="center round" placeholder="user: message"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <input type="submit" id="chat-submit" value="Send" class="center round">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/javascript/config.js"></script>
+    <script src="assets/javascript/game.js"></script>
 </body>
 
 </html>
