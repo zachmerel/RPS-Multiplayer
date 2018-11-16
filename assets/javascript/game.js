@@ -25,13 +25,16 @@ database.ref("/players/").on("value", function (snapshot) {
     //store player1 object to variable
     player1 = snapshot.val().player1;
     player1name = player1.name;
-    //displays player 1 name
+    player1win = player1.win;
+    player1loss = player1.loss
+    player1tie = player1.tie;
+    //displays player 1 name,win,loss,ties
     $("#player1name").text(player1name);
+    $("#player1wins").text(player1win);
+    $("#player1losses").text(player1loss);
+    $("#player1ties").text(player1tie);
   } else {
     console.log("player 1 does not exist")
-
-    // player1 = null;
-    // player1name = "";
   }
   //Checks to see if player two exists within firebase
   if (snapshot.child("player2").exists()) {
@@ -39,13 +42,16 @@ database.ref("/players/").on("value", function (snapshot) {
     //store player2 object to variable
     player2 = snapshot.val().player2;
     player2name = player2.name;
-    //displays player 2 name
+    player2win = player2.win;
+    player2loss = player2.loss
+    player2tie = player2.tie;
+    //displays player 1 name,win,loss,ties
     $("#player2name").text(player2name);
+    $("#player2wins").text(player2win);
+    $("#player2losses").text(player2loss);
+    $("#player2ties").text(player2tie);
   } else {
     console.log("player 2 does not exist")
-
-    // player2 = null;
-    // player2name = "";
   }
 });
 
@@ -111,8 +117,6 @@ $(".player2btn").on("click", function (event) {
   RPSLS();
 })
 
-//function to determine what the user choice was
-
 //function that determine the logic behind RPSLS
 function RPSLS() {
   //logic that would determine player 1 as winner
@@ -125,9 +129,11 @@ function RPSLS() {
     database.ref().child("/players/player1/win").set(player1.win + 1);
     database.ref().child("/players/player2/loss").set(player2.loss + 1);
     //pushes wins loses for player 1 and 2 to html
-    $("#player1wins").html(player1.win);
-    $("#player2losses").html(player2.loss);
-    console.log("player 1 wins")
+    // database.ref("/players/player1/win").on("child_changed",function(snapshot){
+    // $("#player1wins").html(player1.win);
+    // $("#player2losses").html(player2.loss);
+    // console.log("player 1 wins")
+    // });
   }
   //logic that would determine player 1 as winner
   else if ((player2.choice === "Rock" && (player1.choice === "Scissors" || player1.choice === "Lizard")) ||
@@ -139,8 +145,8 @@ function RPSLS() {
     database.ref().child("/players/player2/win").set(player2.win + 1);
     database.ref().child("/players/player1/loss").set(player1.loss + 1);
     //pushes wins loses for player 1 and 2 to html
-    $("#player2wins").html(player2.win);
-    $("#player1losses").html(player1.loss);
+    // $("#player2wins").html(player2.win);
+    // $("#player1losses").html(player1.loss);
     console.log("player 2 wins")
   }
   //logic that determines tie
@@ -154,3 +160,27 @@ function RPSLS() {
   }
 }
 
+//changing the win/loss in the html when firebase is adjusted
+database.ref("/players/player1/win").on("child_added", function (snapshot) {
+  var newWin = snapshot.val();
+  console.log("win" + newWin.win);
+  $("#player1wins").html(player1.win);
+  $("#player2losses").html(player2.loss);
+  console.log("player 1 wins")
+});
+
+
+//chat feature
+//set event listener for chat submit button
+$("chat-submit").on("click", function (event) {
+  event.preventDefault();
+})
+
+//hitting the reset button will clear players thread from firebase and reload the html on the page
+$("#reset").on("click", function () {
+  console.log("reset button clicked")
+  database.ref("/players/").remove();
+  // location.reload();
+  $("#player1name").empty();
+
+});

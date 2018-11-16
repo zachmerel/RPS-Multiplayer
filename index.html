@@ -12,7 +12,7 @@
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/reset.css">
-  
+
 </head>
 
 <body>
@@ -88,13 +88,18 @@
                     <div class="col-md-1"></div>
                 </div>
                 <div class="row">
-                    <button id="reset" type="button"class="btn btn-light">Reset</button>
+                    <button id="reset" type="button" class="btn btn-light">Reset</button>
                 </div>
             </div>
             <div>
                 <div class="row">
                     <div class="col-md-10">
-                        <textarea type="text" id="chat-input" class="center round" placeholder="user: message"></textarea>
+                        <textarea type="text" id="chat-area" class="center round" ></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <textarea type="text" id="chat-message" class="center round" placeholder="user: message"></textarea>
                     </div>
                 </div>
                 <div class="row">

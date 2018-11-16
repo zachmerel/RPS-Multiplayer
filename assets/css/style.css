@@ -20,7 +20,7 @@ button{
 }
 .round{
     border-radius: 10px;
-    margin: 5px;
+    /* margin: 5px; */
 }
 #player1buttons{
     text-align: center;
