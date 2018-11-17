@@ -74,6 +74,7 @@ $("#name-submit").on("click", function (event) {
     };
 
     database.ref().child("/players/player1").set(player1);
+    $("#your-name").val("");
 
   }
   else if (player1 !== null && player2 === null) {
@@ -90,7 +91,7 @@ $("#name-submit").on("click", function (event) {
     };
 
     database.ref().child("/players/player2").set(player2);
-
+    $("#your-name").val("");
   }
 });
 console.log("yourname:", yourName);
@@ -172,15 +173,55 @@ database.ref("/players/player1/win").on("child_added", function (snapshot) {
 
 //chat feature
 //set event listener for chat submit button
-$("chat-submit").on("click", function (event) {
+$("#chat-submit").on("click", function (event) {
+  console.log("chat submit button works")
   event.preventDefault();
-})
+  if ( (yourName !== "") && ($("#chat-message").val().trim() !== "") ) {
+    var userMessage = (`${yourName} : ${$("#chat-message").val().trim()}`);
+    database.ref("/chat/").set(userMessage);
+    $("#chat-message").val("");
+//     database.ref("/chat/").on("value", function (snapshot) {
+//       console.log(snapshot.val())
+//     // var userMessage = (`${yourName} : ${$("#chat-message").val().trim()}`);
+//     // // database.ref("/chat/").set(userMessage);
+//     // $("#chat-message").val("");
+//     // if (snapshot.ref("/chat/").exists()) {
+//     //   console.log("chat exists")
+//     //   // console.log(snapshot.child("/chat/"))
+//       var addChat = snapshot.val();
+//     //   console.log(addChat)
+//     $("#chat-area").append(`${addChat}<br>`);
+//     // }
+//     // $("#chat-message").empty();
+// //look into keys?
+//   });
+}
+});
+database.ref("/chat/").on("value", function (snapshot) {
+  console.log(snapshot.val())
+// var userMessage = (`${yourName} : ${$("#chat-message").val().trim()}`);
+// // database.ref("/chat/").set(userMessage);
+// $("#chat-message").val("");
+// if (snapshot.ref("/chat/").exists()) {
+//   console.log("chat exists")
+//   // console.log(snapshot.child("/chat/"))
+  var addChat = snapshot.val();
+  if(addChat){
+//   console.log(addChat)
+$("#chat-area").append(`${addChat}<br>`);
+
+}
+// $("#chat-message").empty();
+//look into keys?
+});
 
 //hitting the reset button will clear players thread from firebase and reload the html on the page
 $("#reset").on("click", function () {
   console.log("reset button clicked")
   database.ref("/players/").remove();
+  database.ref("/chat/").remove();
   // location.reload();
   $("#player1name").empty();
+  $("#player2name").empty();
 
 });
